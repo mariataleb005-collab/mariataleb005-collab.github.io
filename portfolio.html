@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maria Rooeintan — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --bg:#0A0F1E;--bg2:#0F1629;--bg3:#151D35;--navy:#1B3A6B;
+      --accent:#4F8EF7;--accent2:#7BB3FF;--gold:#F59E0B;
+      --white:#fff;--muted:#94A3B8;
+      --border:rgba(255,255,255,0.08);--card:rgba(255,255,255,0.04);
+    }
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--white);line-height:1.6;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,15,30,0.92);
+      backdrop-filter:blur(20px);border-bottom:1px solid var(--border);
+      padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{font-weight:900;font-size:1.1rem;color:var(--accent);text-decoration:none;}
+    .nav-links{display:flex;gap:1.75rem;list-style:none;}
+    .nav-links a{text-decoration:none;color:var(--muted);font-size:0.875rem;font-weight:500;transition:color 0.2s;}
+    .nav-links a:hover{color:var(--white);}
+    .nav-cta{background:var(--accent)!important;color:#fff!important;padding:0.5rem 1.25rem;border-radius:8px;font-weight:600!important;}
+    #hero{min-height:100vh;display:flex;align-items:center;padding:64px 2rem 0;position:relative;overflow:hidden;}
+    #hero::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(79,142,247,0.12) 0%,transparent 70%);pointer-events:none;}
+    .hero-inner{max-width:1100px;margin:0 auto;width:100%;position:relative;z-index:1;}
+    .hero-badge{display:inline-flex;align-items:center;gap:0.6rem;background:rgba(79,142,247,0.1);color:var(--accent2);font-size:0.8rem;font-weight:600;padding:0.4rem 1rem;border-radius:100px;margin-bottom:1.5rem;border:1px solid rgba(79,142,247,0.25);}
+    .hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#22C55E;animation:pulse 2s infinite;}
+    @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+    h1.hero-title{font-size:clamp(2.8rem,6vw,4.5rem);font-weight:900;line-height:1.05;letter-spacing:-2.5px;margin-bottom:1.25rem;}
+    .highlight{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .hero-sub{font-size:1.05rem;color:var(--muted);max-width:520px;margin-bottom:2.5rem;line-height:1.8;}
+    .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3.5rem;}
+    .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 1.75rem;border-radius:10px;font-size:0.9rem;font-weight:600;text-decoration:none;transition:all 0.2s;border:none;cursor:pointer;}
+    .btn-primary{background:var(--accent);color:#fff;}
+    .btn-primary:hover{opacity:0.9;transform:translateY(-2px);box-shadow:0 12px 30px rgba(79,142,247,0.3);}
+    .btn-outline{background:transparent;color:var(--muted);border:1px solid var(--border);}
+    .btn-outline:hover{border-color:rgba(255,255,255,0.3);color:var(--white);transform:translateY(-2px);}
+    .hero-stats{display:flex;gap:3rem;padding-top:2.5rem;border-top:1px solid var(--border);flex-wrap:wrap;}
+    .stat-num{font-size:2rem;font-weight:900;background:linear-gradient(135deg,var(--white),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-1px;line-height:1;margin-bottom:0.3rem;}
+    .stat-label{font-size:0.72rem;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:0.5px;}
+    section{padding:6rem 2rem;}
+    .section-inner{max-width:1100px;margin:0 auto;}
+    .section-tag{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--accent);margin-bottom:0.75rem;}
+    .section-title{font-size:clamp(1.75rem,4vw,2.5rem);font-weight:900;letter-spacing:-1px;color:var(--white);margin-bottom:1rem;}
+    .section-desc{font-size:0.95rem;color:var(--muted);max-width:520px;line-height:1.8;margin-bottom:3rem;}
+    #about,#skills,#certifications{background:var(--bg2);}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+    .about-text p{color:var(--muted);margin-bottom:1.1rem;line-height:1.9;font-size:0.95rem;}
+    .about-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    .about-card{background:var(--card);border-radius:16px;padding:1.5rem;border:1px solid var(--border);transition:all 0.2s;}
+    .about-card:hover{border-color:rgba(79,142,247,0.3);background:rgba(79,142,247,0.05);transform:translateY(-3px);}
+    .about-card-icon{font-size:1.5rem;margin-bottom:0.75rem;}
+    .about-card-title{font-size:0.85rem;font-weight:700;color:var(--white);margin-bottom:0.3rem;}
+    .about-card-text{font-size:0.78rem;color:var(--muted);line-height:1.5;}
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.5rem;}
+    .project-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2rem;transition:all 0.25s;position:relative;overflow:hidden;}
+    .project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity 0.2s;}
+    .project-card:hover{border-color:rgba(79,142,247,0.3);transform:translateY(-5px);box-shadow:0 25px 50px rgba(0,0,0,0.4);}
+    .project-card:hover::before{opacity:1;}
+    .project-tag{display:inline-block;background:rgba(79,142,247,0.12);color:var(--accent2);font-size:0.7rem;font-weight:700;padding:0.25rem 0.75rem;border-radius:100px;margin-bottom:1rem;text-transform:uppercase;letter-spacing:1px;border:1px solid rgba(79,142,247,0.2);}
+    .project-title{font-size:1.1rem;font-weight:800;color:var(--white);margin-bottom:0.75rem;}
+    .project-desc{font-size:0.875rem;color:var(--muted);line-height:1.75;margin-bottom:1.25rem;}
+    .project-metrics{display:flex;gap:0.75rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+    .metric{background:rgba(245,158,11,0.1);color:var(--gold);padding:0.3rem 0.75rem;border-radius:8px;font-size:0.72rem;font-weight:700;border:1px solid rgba(245,158,11,0.2);}
+    .project-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.5rem;}
+    .tech-tag{background:var(--bg3);color:var(--muted);font-size:0.72rem;font-weight:600;padding:0.25rem 0.65rem;border-radius:6px;border:1px solid var(--border);}
+    .project-link{display:inline-flex;align-items:center;gap:0.4rem;color:var(--accent);font-size:0.85rem;font-weight:600;text-decoration:none;transition:gap 0.2s;}
+    .project-link:hover{gap:0.7rem;}
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;}
+    .skill-group{background:var(--card);border-radius:16px;padding:1.75rem;border:1px solid var(--border);transition:border-color 0.2s;}
+    .skill-group:hover{border-color:rgba(79,142,247,0.25);}
+    .skill-group-title{font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent2);margin-bottom:1.25rem;}
+    .skill-pills{display:flex;flex-wrap:wrap;gap:0.5rem;}
+    .skill-pill{background:var(--bg3);color:var(--muted);font-size:0.78rem;font-weight:600;padding:0.4rem 0.9rem;border-radius:8px;border:1px solid var(--border);transition:all 0.15s;cursor:default;}
+    .skill-pill:hover{background:rgba(79,142,247,0.15);color:var(--accent2);border-color:rgba(79,142,247,0.3);}
+    .edu-timeline{display:flex;flex-direction:column;gap:1.25rem;max-width:700px;}
+    .edu-card{display:flex;gap:1.5rem;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.75rem;transition:all 0.2s;}
+    .edu-card:hover{border-color:rgba(79,142,247,0.25);transform:translateX(4px);}
+    .edu-dot{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,var(--navy),var(--accent));display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+    .edu-degree{font-size:0.95rem;font-weight:700;color:var(--white);margin-bottom:0.2rem;}
+    .edu-school{font-size:0.85rem;font-weight:600;color:var(--accent);margin-bottom:0.2rem;}
+    .edu-date{font-size:0.75rem;color:var(--muted);margin-bottom:0.5rem;}
+    .edu-detail{font-size:0.78rem;color:var(--muted);line-height:1.6;}
+    .certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem;}
+    .cert-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem;display:flex;gap:1rem;align-items:flex-start;transition:all 0.2s;}
+    .cert-card:hover{border-color:rgba(79,142,247,0.25);transform:translateY(-2px);}
+    .cert-icon{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--navy),var(--accent));display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+    .cert-name{font-size:0.875rem;font-weight:700;color:var(--white);margin-bottom:0.2rem;}
+    .cert-issuer{font-size:0.78rem;color:var(--accent);font-weight:600;margin-bottom:0.2rem;}
+    .cert-date{font-size:0.72rem;color:var(--muted);}
+    .contact-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+    .contact-text p{color:var(--muted);line-height:1.9;margin-bottom:2rem;font-size:0.95rem;}
+    .contact-links{display:flex;flex-direction:column;gap:0.875rem;}
+    .contact-link{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;background:var(--card);border:1px solid var(--border);border-radius:12px;text-decoration:none;color:var(--muted);font-weight:600;font-size:0.875rem;transition:all 0.2s;}
+    .contact-link:hover{background:rgba(79,142,247,0.1);border-color:rgba(79,142,247,0.3);color:var(--white);transform:translateX(4px);}
+    .contact-link-icon{width:36px;height:36px;border-radius:8px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+    .contact-card{background:linear-gradient(135deg,var(--navy) 0%,#0F2550 100%);border-radius:24px;padding:3rem;text-align:center;border:1px solid rgba(79,142,247,0.2);position:relative;overflow:hidden;}
+    .contact-card::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(79,142,247,0.15),transparent 70%);}
+    .contact-card-avatar{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:900;margin:0 auto 1.5rem;border:2px solid rgba(255,255,255,0.2);color:#fff;position:relative;z-index:1;}
+    .contact-card h3{font-size:1.2rem;font-weight:800;margin-bottom:0.5rem;position:relative;z-index:1;}
+    .contact-card p{font-size:0.82rem;opacity:0.65;margin-bottom:2rem;line-height:1.7;position:relative;z-index:1;}
+    .contact-card .btn{background:var(--accent);color:#fff;width:100%;justify-content:center;position:relative;z-index:1;}
+    .contact-card .btn:hover{opacity:0.9;box-shadow:0 8px 25px rgba(79,142,247,0.4);}
+    footer{background:var(--bg2);border-top:1px solid var(--border);color:var(--muted);text-align:center;padding:2rem;font-size:0.8rem;}
+    footer span{color:var(--accent);font-weight:600;}
+    @media(max-width:768px){.about-grid,.contact-wrapper{grid-template-columns:1fr;gap:2rem;}.hero-stats{gap:1.5rem;}.nav-links{display:none;}}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="#hero" class="nav-logo">MR.</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li><li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li><li><a href="#education">Education</a></li>
+    <li><a href="#certifications">Certifications</a></li><li><a href="#contact">Contact</a></li>
+    <li><a href="mailto:u23101523@sharjah.ac.ae" class="nav-cta">Get in Touch</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Available for internships &middot; Ajman, UAE</div>
+    <h1 class="hero-title">Hi, I'm <span class="highlight">Maria</span>.<br/>I build AI for<br/>healthcare.</h1>
+    <p class="hero-sub">Third-year Biomedical Informatics student at the University of Sharjah, passionate about applying machine learning and deep learning to real-world clinical challenges.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">View My Work &rarr;</a>
+      <a href="https://linkedin.com/in/maria-taleb-64058a371/" target="_blank" class="btn btn-outline">LinkedIn &#8599;</a>
+      <a href="https://github.com/mariataleb005-collab" target="_blank" class="btn btn-outline">GitHub &#8599;</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">3.9</div><div class="stat-label">CGPA</div></div>
+      <div><div class="stat-num">2&times;</div><div class="stat-label">Dean's List</div></div>
+      <div><div class="stat-num">443</div><div class="stat-label">Studies Reviewed</div></div>
+      <div><div class="stat-num">94.8%</div><div class="stat-label">Best Model Accuracy</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-tag">About Me</div>
+        <h2 class="section-title">Where medicine meets intelligence</h2>
+        <p>I'm a third-year Biomedical Informatics student with a deep interest in how artificial intelligence can transform healthcare &mdash; from speeding up diagnosis to making clinical decision-making more reliable and equitable.</p>
+        <p>My work spans machine learning, deep learning, and clinical NLP. I enjoy building things from scratch, understanding why models work (or don't), and thinking critically about the ethics of AI in high-stakes environments.</p>
+        <p>Outside of projects, I'm an active member of the ACM Student Chapter and always looking for ways to connect with people working at the frontier of health technology.</p>
+      </div>
+      <div class="about-cards">
+        <div class="about-card"><div class="about-card-icon">🔬</div><div class="about-card-title">Research</div><div class="about-card-text">LLMs in clinical diagnostics &amp; autoimmune disease</div></div>
+        <div class="about-card"><div class="about-card-icon">🤖</div><div class="about-card-title">ML / DL</div><div class="about-card-text">End-to-end pipelines, custom implementations</div></div>
+        <div class="about-card"><div class="about-card-icon">🏥</div><div class="about-card-title">Health AI</div><div class="about-card-text">Predictive modelling &amp; clinical NLP applications</div></div>
+        <div class="about-card"><div class="about-card-icon">⚖️</div><div class="about-card-title">AI Ethics</div><div class="about-card-text">Responsible deployment &amp; bias in healthcare AI</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-tag">Projects</div>
+    <h2 class="section-title">Things I've built</h2>
+    <p class="section-desc">A selection of projects where I've applied ML and data science to real problems.</p>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-tag">Machine Learning</div>
+        <div class="project-title">Obesity Level Prediction</div>
+        <div class="project-desc">Multi-model ML pipeline classifying individuals into 7 obesity categories based on lifestyle and physiological features. Includes a custom KNN implementation, Random Forest tuned via RandomizedSearchCV, and an SVM optimized using a genetic algorithm.</div>
+        <div class="project-metrics"><span class="metric">94.8% Accuracy</span><span class="metric">0.948 F1-Score</span><span class="metric">2,111 Samples</span></div>
+        <div class="project-tags"><span class="tech-tag">Python</span><span class="tech-tag">Scikit-learn</span><span class="tech-tag">Pandas</span><span class="tech-tag">NumPy</span><span class="tech-tag">Seaborn</span></div>
+        <a href="https://github.com/mariataleb005-collab/ml-bioinformatics-obesity" target="_blank" class="project-link">View on GitHub &rarr;</a>
+      </div>
+      <div class="project-card">
+        <div class="project-tag">Research</div>
+        <div class="project-title">LLMs in Autoimmune Diagnostics</div>
+        <div class="project-desc">Co-authored a systematic review examining how large language models can support clinical diagnosis of autoimmune diseases. Screened 443 studies using PRISMA methodology, evaluated GPT-4, BioGPT, and ClinicalBERT, and proposed a novel disease taxonomy.</div>
+        <div class="project-metrics"><span class="metric">443 Studies Screened</span><span class="metric">20 Included</span><span class="metric">9 Disease Categories</span></div>
+        <div class="project-tags"><span class="tech-tag">PRISMA</span><span class="tech-tag">GPT-4</span><span class="tech-tag">BioGPT</span><span class="tech-tag">ClinicalBERT</span><span class="tech-tag">NLP</span></div>
+        <a href="https://github.com/mariataleb005-collab" target="_blank" class="project-link">View on GitHub &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-tag">Skills</div>
+    <h2 class="section-title">My toolkit</h2>
+    <p class="section-desc">Technologies and tools I work with regularly.</p>
+    <div class="skills-grid">
+      <div class="skill-group"><div class="skill-group-title">💻 Languages</div><div class="skill-pills"><span class="skill-pill">Python</span><span class="skill-pill">R</span><span class="skill-pill">C++</span><span class="skill-pill">SQL</span></div></div>
+      <div class="skill-group"><div class="skill-group-title">🧠 ML / DL Frameworks</div><div class="skill-pills"><span class="skill-pill">TensorFlow</span><span class="skill-pill">PyTorch</span><span class="skill-pill">Keras</span><span class="skill-pill">Scikit-learn</span><span class="skill-pill">Caffe</span></div></div>
+      <div class="skill-group"><div class="skill-group-title">📊 Data &amp; Viz</div><div class="skill-pills"><span class="skill-pill">Pandas</span><span class="skill-pill">NumPy</span><span class="skill-pill">Matplotlib</span><span class="skill-pill">Seaborn</span></div></div>
+      <div class="skill-group"><div class="skill-group-title">🧬 Bioinformatics</div><div class="skill-pills"><span class="skill-pill">BLAST</span><span class="skill-pill">k-mer Analysis</span><span class="skill-pill">Sequence Preprocessing</span></div></div>
+      <div class="skill-group"><div class="skill-group-title">🔬 Research</div><div class="skill-pills"><span class="skill-pill">PRISMA</span><span class="skill-pill">Systematic Review</span><span class="skill-pill">Academic Writing</span><span class="skill-pill">LaTeX</span></div></div>
+      <div class="skill-group"><div class="skill-group-title">⚙️ Tools</div><div class="skill-pills"><span class="skill-pill">Git &amp; GitHub</span><span class="skill-pill">Jupyter</span><span class="skill-pill">VS Code</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="section-inner">
+    <div class="section-tag">Education</div>
+    <h2 class="section-title">Academic background</h2>
+    <p class="section-desc">Where I've been learning and growing.</p>
+    <div class="edu-timeline">
+      <div class="edu-card">
+        <div class="edu-dot">🎓</div>
+        <div><div class="edu-degree">B.S. in Biomedical Informatics</div><div class="edu-school">University of Sharjah</div><div class="edu-date">Sep 2023 &ndash; May 2027 (Expected)</div><div class="edu-detail">CGPA: 3.9 / 4.0 &middot; Dean's List (2 consecutive semesters)<br/>Courses: AI, Machine Learning, Deep Learning, DBMS, Bioinformatics, Data Analytics</div></div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-dot">🏫</div>
+        <div><div class="edu-degree">High School Diploma</div><div class="edu-school">Alshola American School</div><div class="edu-date">Sep 2019 &ndash; Jun 2023</div><div class="edu-detail">AP Biology &middot; AP Calculus</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="section-inner">
+    <div class="section-tag">Certifications</div>
+    <h2 class="section-title">Continuous learning</h2>
+    <p class="section-desc">Courses and certifications I've completed beyond the classroom.</p>
+    <div class="certs-grid">
+      <div class="cert-card"><div class="cert-icon">🟢</div><div><div class="cert-name">Fundamentals of Deep Learning</div><div class="cert-issuer">NVIDIA</div><div class="cert-date">Issued Dec 2025</div></div></div>
+      <div class="cert-card"><div class="cert-icon">🔵</div><div><div class="cert-name">Introduction to Machine Learning with Python</div><div class="cert-issuer">Arizona State University</div><div class="cert-date">Issued Jul 2025</div></div></div>
+      <div class="cert-card"><div class="cert-icon">🧬</div><div><div class="cert-name">Fundamental Skills in Bioinformatics</div><div class="cert-issuer">King Abdullah University of Science and Technology</div><div class="cert-date">Issued Aug 2025</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-wrapper">
+      <div class="contact-text">
+        <div class="section-tag">Contact</div>
+        <h2 class="section-title">Let's connect</h2>
+        <p>I'm always open to interesting conversations, internship opportunities, or collaborations at the intersection of AI and healthcare. Feel free to reach out!</p>
+        <div class="contact-links">
+          <a href="mailto:u23101523@sharjah.ac.ae" class="contact-link"><div class="contact-link-icon">✉️</div>u23101523@sharjah.ac.ae</a>
+          <a href="https://linkedin.com/in/maria-taleb-64058a371/" target="_blank" class="contact-link"><div class="contact-link-icon">💼</div>linkedin.com/in/maria-taleb-64058a371</a>
+          <a href="https://github.com/mariataleb005-collab" target="_blank" class="contact-link"><div class="contact-link-icon">🐙</div>github.com/mariataleb005-collab</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-avatar">MR</div>
+        <h3>Maria Rooeintan</h3>
+        <p>Biomedical Informatics Student<br/>University of Sharjah &middot; Ajman, UAE<br/>Open to AI/ML Internships</p>
+        <a href="mailto:u23101523@sharjah.ac.ae" class="btn">Send a Message &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><p>Designed &amp; built by <span>Maria Rooeintan</span> &middot; 2026</p></footer>
+</body>
+</html>
